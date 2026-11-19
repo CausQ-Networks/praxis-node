@@ -1,13 +1,13 @@
 {
-    "name": "@fosrl/pangolin-node",
+    "name": "@causq-networks/praxis-node",
     "version": "0.0.0",
     "private": true,
     "type": "module",
-    "description": "Wrapper for remote pangolin nodes",
-    "homepage": "https://github.com/fosrl/pangolin-node",
+    "description": "Wrapper for remote praxis nodes",
+    "homepage": "https://github.com/CausQ-Networks/praxis-node",
     "repository": {
         "type": "git",
-        "url": "https://github.com/fosrl/pangolin-node"
+        "url": "https://github.com/CausQ-Networks/praxis-node"
     },
     "license": "SEE LICENSE IN LICENSE AND README.md",
     "scripts": {

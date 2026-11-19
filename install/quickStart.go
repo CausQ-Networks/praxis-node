@@ -14,8 +14,8 @@ import (
 const (
 	FRONTEND_SECRET_KEY = "af4e4785-7e09-11f0-b93a-74563c4e2a7e"
 
-	// DefaultPanelURL is Pangolin Cloud, used unless the --pangolin-endpoint flag points elsewhere.
-	DefaultPanelURL = "https://app.pangolin.net"
+	// DefaultPanelURL is Praxis Cloud, used unless the --pangolin-endpoint flag points elsewhere.
+	DefaultPanelURL = "https://app.praxis.causq.com"
 )
 
 // HybridCredentials represents the response from the cloud API
@@ -46,7 +46,7 @@ func generateValidationToken() string {
 
 // requestHybridCredentials makes an HTTP POST request to the panel API
 // to get hybrid credentials (ID and secret). panelURL is the base URL of
-// the Pangolin panel (Pangolin Cloud by default, or a self-hosted instance).
+// the Praxis panel (Praxis Cloud by default, or a self-hosted instance).
 func requestHybridCredentials(panelURL string) (*HybridCredentials, error) {
 	// Generate validation token
 	token := generateValidationToken()

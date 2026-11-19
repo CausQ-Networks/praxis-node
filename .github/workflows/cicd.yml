@@ -41,13 +41,13 @@ jobs:
             - name: Pull latest Gerbil version
               id: get-gerbil-tag
               run: |
-                  LATEST_TAG=$(curl -s https://api.github.com/repos/fosrl/gerbil/tags | jq -r '.[0].name')
+                  LATEST_TAG=$(curl -s https://api.github.com/repos/causq-networks/praxis-gerbil/tags | jq -r '.[0].name')
                   echo "LATEST_GERBIL_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
             - name: Pull latest Badger version
               id: get-badger-tag
               run: |
-                  LATEST_TAG=$(curl -s https://api.github.com/repos/fosrl/badger/tags | jq -r '.[0].name')
+                  LATEST_TAG=$(curl -s https://api.github.com/repos/causq-networks/praxis-badger/tags | jq -r '.[0].name')
                   echo "LATEST_BADGER_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
             - name: Update install/main.go
@@ -55,10 +55,10 @@ jobs:
                   PANGOLIN_VERSION=${{ env.TAG }}
                   GERBIL_VERSION=${{ env.LATEST_GERBIL_TAG }}
                   BADGER_VERSION=${{ env.LATEST_BADGER_TAG }}
-                  sed -i "s/config.PangolinVersion = \".*\"/config.PangolinVersion = \"$PANGOLIN_VERSION\"/" install/main.go
+                  sed -i "s/config.PraxisVersion = \".*\"/config.PraxisVersion = \"$PANGOLIN_VERSION\"/" install/main.go
                   sed -i "s/config.GerbilVersion = \".*\"/config.GerbilVersion = \"$GERBIL_VERSION\"/" install/main.go
                   sed -i "s/config.BadgerVersion = \".*\"/config.BadgerVersion = \"$BADGER_VERSION\"/" install/main.go
-                  echo "Updated install/main.go with Pangolin version $PANGOLIN_VERSION, Gerbil version $GERBIL_VERSION, and Badger version $BADGER_VERSION"
+                  echo "Updated install/main.go with Praxis version $PANGOLIN_VERSION, Gerbil version $GERBIL_VERSION, and Badger version $BADGER_VERSION"
                   cat install/main.go
 
             - name: Build installer

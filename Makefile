@@ -9,17 +9,17 @@ build-release:
 	fi
 	docker buildx build \
 		--platform linux/arm64,linux/amd64 \
-		--tag fosrl/pangolin-node:latest \
-		--tag fosrl/pangolin-node:$(major_tag) \
-		--tag fosrl/pangolin-node:$(minor_tag) \
-		--tag fosrl/pangolin-node:$(tag) \
+		--tag causq-networks/praxis-node:latest \
+		--tag causq-networks/praxis-node:$(major_tag) \
+		--tag causq-networks/praxis-node:$(minor_tag) \
+		--tag causq-networks/praxis-node:$(tag) \
 		--push .
 
 build:
-	docker build -t fosrl/pangolin-node:latest .
+	docker build -t causq-networks/praxis-node:latest .
 
 test:
-	docker run -it -p 3001:3001 -p 3002:3002 -v ./config:/app/config fosrl/pangolin-node:latest
+	docker run -it -p 3001:3001 -p 3002:3002 -v ./config:/app/config causq-networks/praxis-node:latest
 
 clean:
-	docker rmi fosrl/pangolin-node
+	docker rmi causq-networks/praxis-node

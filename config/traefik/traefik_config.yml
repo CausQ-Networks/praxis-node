@@ -10,7 +10,7 @@ providers:
 experimental:
   plugins:
     badger:
-      moduleName: "github.com/fosrl/badger"
+      moduleName: "github.com/CausQ-Networks/praxis-badger"
       version: "v1.7.0"
 
 log:

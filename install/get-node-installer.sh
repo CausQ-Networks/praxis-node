@@ -12,7 +12,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # GitHub repository info
-REPO="fosrl/pangolin-node"
+REPO="causq-networks/praxis-node"
 GITHUB_API_URL="https://api.github.com/repos/${REPO}/releases/latest"
 
 # Function to print colored output

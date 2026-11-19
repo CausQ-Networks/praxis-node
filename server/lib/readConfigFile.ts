@@ -22,7 +22,7 @@ export const configSchema = z.object({
     server: z
         .object({
             internal_port: portSchema.default(3001),
-            internal_hostname: z.string().optional().default("pangolin"),
+            internal_hostname: z.string().optional().default("praxis"),
         })
         .prefault({}),
     managed: z.object({
@@ -32,7 +32,7 @@ export const configSchema = z.object({
         endpoint: z
             .string()
             .optional()
-            .default("https://app.pangolin.net"),
+            .default("https://app.praxis.causq.com"),
         redirect_endpoint: z.string().optional()
     }),
     traefik: z

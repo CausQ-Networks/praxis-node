@@ -18,11 +18,11 @@ put-back:
 	mv main.go.bak main.go
 
 dev-update-versions:
-	PANGOLIN_VERSION=$$(curl -s https://api.github.com/repos/fosrl/pangolin-node/tags | jq -r '.[0].name') && \
-	GERBIL_VERSION=$$(curl -s https://api.github.com/repos/fosrl/gerbil/tags | jq -r '.[0].name') && \
-	BADGER_VERSION=$$(curl -s https://api.github.com/repos/fosrl/badger/tags | jq -r '.[0].name') && \
-	echo "Latest versions - Pangolin: $$PANGOLIN_VERSION, Gerbil: $$GERBIL_VERSION, Badger: $$BADGER_VERSION" && \
-	sed -i "s/config.PangolinVersion = \".*\"/config.PangolinVersion = \"$$PANGOLIN_VERSION\"/" main.go && \
+	PANGOLIN_VERSION=$$(curl -s https://api.github.com/repos/causq-networks/praxis-node/tags | jq -r '.[0].name') && \
+	GERBIL_VERSION=$$(curl -s https://api.github.com/repos/causq-networks/praxis-gerbil/tags | jq -r '.[0].name') && \
+	BADGER_VERSION=$$(curl -s https://api.github.com/repos/causq-networks/praxis-badger/tags | jq -r '.[0].name') && \
+	echo "Latest versions - Praxis: $$PANGOLIN_VERSION, Gerbil: $$GERBIL_VERSION, Badger: $$BADGER_VERSION" && \
+	sed -i "s/config.PraxisVersion = \".*\"/config.PraxisVersion = \"$$PANGOLIN_VERSION\"/" main.go && \
 	sed -i "s/config.GerbilVersion = \".*\"/config.GerbilVersion = \"$$GERBIL_VERSION\"/" main.go && \
 	sed -i "s/config.BadgerVersion = \".*\"/config.BadgerVersion = \"$$BADGER_VERSION\"/" main.go && \
 	echo "Updated main.go with latest versions"
@@ -31,7 +31,7 @@ dev-build: go-build-release
 
 dev-clean:
 	@echo "Restoring version values ..."
-	sed -i "s/config.PangolinVersion = \".*\"/config.PangolinVersion = \"replaceme\"/" main.go && \
+	sed -i "s/config.PraxisVersion = \".*\"/config.PraxisVersion = \"replaceme\"/" main.go && \
 	sed -i "s/config.GerbilVersion = \".*\"/config.GerbilVersion = \"replaceme\"/" main.go && \
 	sed -i "s/config.BadgerVersion = \".*\"/config.BadgerVersion = \"replaceme\"/" main.go
 	@echo "Restored version strings in main.go"

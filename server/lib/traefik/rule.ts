@@ -40,7 +40,7 @@ export function matchesPath(
     return true;
 }
 
-// The two HostRegexp patterns Pangolin's buildHostRule emits for wildcard
+// The two HostRegexp patterns Praxis's buildHostRule emits for wildcard
 // resources, capturing the escaped domain the wildcard sits under:
 // `^[^.]+\.parent$`, and `^([^.]+\.)?parent$` when the base host matches too.
 const WILDCARD_HOST_PATTERN = /^\^(?:\[\^\.\]\+\\\.|\(\[\^\.\]\+\\\.\)\?)(.+)\$$/;

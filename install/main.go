@@ -20,7 +20,7 @@ import (
 
 // DO NOT EDIT THIS FUNCTION; IT MATCHED BY REGEX IN CICD
 func loadVersions(config *Config) {
-	config.PangolinVersion = "replaceme"
+	config.PraxisVersion = "replaceme"
 	config.GerbilVersion = "replaceme"
 	config.BadgerVersion = "replaceme"
 }
@@ -30,7 +30,7 @@ var configFiles embed.FS
 
 type Config struct {
 	InstallationContainerType SupportedContainer
-	PangolinVersion           string
+	PraxisVersion           string
 	GerbilVersion             string
 	BadgerVersion             string
 	DashboardDomain           string
@@ -51,13 +51,13 @@ const (
 
 func main() {
 
-	panelURL := flag.String("pangolin-endpoint", DefaultPanelURL, "Base URL of the Pangolin server to fetch node credentials from. Only needed if you are not using Pangolin Cloud (app.pangolin.net).")
+	panelURL := flag.String("pangolin-endpoint", DefaultPanelURL, "Base URL of the Praxis server to fetch node credentials from. Only needed if you are not using Praxis Cloud (app.praxis.causq.com).")
 	flag.Parse()
 
 	// print a banner about prerequisites - opening port 80, 443, 51820, and 21820 on the VPS and firewall and pointing your domain to the VPS IP with a records. Docs are at http://localhost:3000/Getting%20Started/dns-networking
 
-	fmt.Println("Welcome to the Pangolin Remote Node installer!")
-	fmt.Println("This installer will help you set up Pangolin on your server.")
+	fmt.Println("Welcome to the Praxis Remote Node installer!")
+	fmt.Println("This installer will help you set up Praxis on your server.")
 	fmt.Println("\nPlease make sure you have the following prerequisites:")
 	fmt.Println("- Open TCP ports 80 and 443 and UDP ports 51820 and 21820 on your VPS and firewall.")
 	fmt.Println("\nLets get started!")
@@ -67,7 +67,7 @@ func main() {
 			if err := checkPortsAvailable(p); err != nil {
 				fmt.Fprintln(os.Stderr, err)
 
-				fmt.Printf("Please close any services on ports 80/443 in order to run the installation smoothly. If you already have the Pangolin stack running, shut them down before proceeding.\n")
+				fmt.Printf("Please close any services on ports 80/443 in order to run the installation smoothly. If you already have the Praxis stack running, shut them down before proceeding.\n")
 				os.Exit(1)
 			}
 		}
@@ -100,7 +100,7 @@ func main() {
 			fmt.Printf("Your managed credentials have been obtained successfully.\n")
 			fmt.Printf("	ID:     %s\n", config.HybridId)
 			fmt.Printf("	Secret: %s\n", config.HybridSecret)
-			fmt.Printf("\nTake these to the Pangolin dashboard %s to adopt your node.\n\n", *panelURL)
+			fmt.Printf("\nTake these to the Praxis dashboard %s to adopt your node.\n\n", *panelURL)
 			readBool(reader, "Have you adopted your node?", true)
 		}
 
@@ -158,7 +158,7 @@ func main() {
 		}
 
 	} else {
-		fmt.Println("Looks like you already installed a Pangolin node!")
+		fmt.Println("Looks like you already installed a Praxis node!")
 	}
 
 	// TODO: re-enable crowdsec installation prompt
@@ -169,7 +169,7 @@ func main() {
 	// 	fmt.Println("\n=== CrowdSec Install ===")
 	// 	// check if crowdsec is installed
 	// 	if readBool(reader, "Would you like to install CrowdSec?", false) {
-	// 		fmt.Println("This installer constitutes a minimal viable CrowdSec deployment. CrowdSec will add extra complexity to your Pangolin installation and may not work to the best of its abilities out of the box. Users are expected to implement configuration adjustments on their own to achieve the best security posture. Consult the CrowdSec documentation for detailed configuration instructions.")
+	// 		fmt.Println("This installer constitutes a minimal viable CrowdSec deployment. CrowdSec will add extra complexity to your Praxis installation and may not work to the best of its abilities out of the box. Users are expected to implement configuration adjustments on their own to achieve the best security posture. Consult the CrowdSec documentation for detailed configuration instructions.")
 
 	// 		// BUG: crowdsec installation will be skipped if the user chooses to install on the first installation.
 	// 		if readBool(reader, "Are you willing to manage CrowdSec?", false) {
@@ -223,7 +223,7 @@ func main() {
 }
 
 func podmanOrDocker(reader *bufio.Reader) SupportedContainer {
-	inputContainer := readString(reader, "Would you like to run Pangolin as Docker or Podman containers?", "docker")
+	inputContainer := readString(reader, "Would you like to run Praxis as Docker or Podman containers?", "docker")
 
 	chosenContainer := Docker
 	if strings.EqualFold(inputContainer, "docker") {
@@ -243,7 +243,7 @@ func podmanOrDocker(reader *bufio.Reader) SupportedContainer {
 
 		if err := exec.Command("bash", "-c", "cat /etc/sysctl.conf | grep 'net.ipv4.ip_unprivileged_port_start='").Run(); err != nil {
 			fmt.Println("Would you like to configure ports >= 80 as unprivileged ports? This enables podman containers to listen on low-range ports.")
-			fmt.Println("Pangolin will experience startup issues if this is not configured, because it needs to listen on port 80/443 by default.")
+			fmt.Println("Praxis will experience startup issues if this is not configured, because it needs to listen on port 80/443 by default.")
 			approved := readBool(reader, "The installer is about to execute \"echo 'net.ipv4.ip_unprivileged_port_start=80' >> /etc/sysctl.conf && sysctl -p\". Approve?", true)
 			if approved {
 				if os.Geteuid() != 0 {

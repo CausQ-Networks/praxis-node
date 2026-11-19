@@ -1,7 +1,7 @@
 /**
  * Apply a path rewrite to a request path in-process, producing the same
  * result the replacePathRegex / stripPrefix middlewares built above would.
- * Used where Pangolin issues the redirect itself (badger) instead of
+ * Used where Praxis issues the redirect itself (badger) instead of
  * handing it to Traefik.
  */
 export function rewriteRequestPath(

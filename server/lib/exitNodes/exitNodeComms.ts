@@ -67,7 +67,7 @@ export async function sendToExitNode(
     } catch (error) {
         if (axios.isAxiosError(error)) {
             logger.error(
-                `Error making ${method} request (can Pangolin see Gerbil HTTP API?) for exit node at ${config.getRawConfig().gerbil.reachable_at} (status: ${error.response?.status}): ${error.message}`
+                `Error making ${method} request (can Praxis see Gerbil HTTP API?) for exit node at ${config.getRawConfig().gerbil.reachable_at} (status: ${error.response?.status}): ${error.message}`
             );
         } else {
             logger.error(

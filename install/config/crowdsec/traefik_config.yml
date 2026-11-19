@@ -10,7 +10,7 @@ providers:
 experimental:
   plugins:
     badger:
-      moduleName: "github.com/fosrl/badger"
+      moduleName: "github.com/CausQ-Networks/praxis-badger"
       version: "{{.BadgerVersion}}"
     crowdsec: # CrowdSec plugin configuration added
       moduleName: "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
